@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "name": "website_ai",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StijnSchildermans/website_ai.git"
+  },
+  "author": "Stijn Schildermans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StijnSchildermans/website_ai/issues"
+  },
+  "homepage": "https://github.com/StijnSchildermans/website_ai#readme",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
