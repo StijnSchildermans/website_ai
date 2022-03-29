@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="resources/styles.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -12,19 +13,7 @@
 </head>
 <body>
 
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-    <a href="/#home" class="w3-bar-item w3-button w3-text-blue"><b>AI</b> Electro Technics</a>
-    <!-- Float links to the right. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-      <a href="/#about" class="w3-bar-item w3-button">Over ons</a>
-      <a href="/expertise" class="w3-bar-item w3-button">Expertise</a>
-      <a href="/vacatures" class="w3-bar-item w3-button">Vacatures</a>
-      <a href="/contact" class="w3-bar-item w3-button w3-blue">Contact</a>
-    </div>
-  </div>
-</div>
+<div id="div_header" class="w3-top"></div>
 
 <div class="w3-container w3-padding-64" id="contact">
   <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h2>
@@ -64,36 +53,157 @@
 <!-- Contact Section -->
 <div class="w3-container w3-padding-32" id="contact">
   <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contacteer ons rechtstreeks</h3>
-  <p>Laat een vraag of opmerking achter en wij nemen zo snel mogelijk contact met u op.</p>
+  <!-- Tab links -->
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'question')">Vraag/opmerking</button>
+    <button class="tablinks" onclick="openCity(event, 'intervention_warranty')">Interventie binnen garantie</button>
+    <button class="tablinks" onclick="openCity(event, 'intervention_no_warranty')">Interventie buiten garantie</button>
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+<!-- Tab content -->
+<div id="question" class="tabcontent">
+  <p>Laat hier uw vraag of opmerking achter en wij behendelen hem zo snel mogelijk!</p>
   <form id="contact-form" action="/sendemail" method="POST">
     <input class="w3-input w3-border" type="text" placeholder="Naam" required name="Name">
     <input class="w3-input w3-section w3-border" type="text" placeholder="E-mailadres" required name="Email">
     <input class="w3-input w3-section w3-border" type="text" placeholder="Onderwerp" required name="Subject">
     <textarea class="w3-input w3-section w3-border" placeholder="Vraag/opmerking" required name="Body" rows="5"></textarea>
-    <input class="w3-button w3-blue w3-section" type="submit" value="Verzenden" id="subm" onclick="submitForm()">
-
-    <script>
-        function submitForm() {
-        document.getElementById("contact-form").submit();
-        document.getElementById("contact-form").reset();
-        alert("Bedankt voor uw vraag. Wij behandelen hem zo snel mogelijk.");
-        }
-    </script>
+    <input class="w3-button w3-gray w3-section" type="submit" value="Verzenden" id="subm" onclick="submitForm('contact-form')">
 
   </form>
 </div>
 
+<div id="intervention_warranty" class="tabcontent">
+ <p>Via dit document kan u een interventie die gedekt is door garantie aanvragen. Gelieve de voorwaarden aandachtig te lezen alvorens een aanvraag in te dienen. Wij van zodra wij uw aanvraag ontvangen hebben zo spoedig mogelijk contact met u op.</p>
+
+<h5>Voorwaarden</h5>
+<p>De interventie zal aangerekend worden bij volgende vaststellingen:</p>
+<ul>
+  <li>Het defect geen gevolg is van een installatiefout;</li>
+  <li>Het defect veroorzaakt werd door een foutieve handeling</li>
+  <li>Het defect een gevolg is van achterstallig onderhoud;</li>
+  <li>Indien er een wijziging aangebracht werd door een 3de partij aan de installatie;</li>
+  <li>Door aanpassingen in het AREI na de oplevering / keuring van de installatie.</li>
+</ul>
+
+<p>Hierbij de geldende tarieven indien deze interventie buiten garantie valt: maandag tot vrijdag van 08u00 tot 17u00 : 75€ uur exclusief BTW. De interventie tijd start en
+eindigt aan kantoren van AI Electro Technics te Ambachtsstraat 2, Tessenderlo. <b>Na 17:00 is er geen interventie voorzien.</b></p>
+
+<h6>Supplementair:</h6>
+<ul>
+<li>Verplaatsingsvergoeding van 0,5 €/km. (exclusief BTW) . Start en eindigt aan kantoren van A I Electro
+Technics te Ambachtsstraat 2 , Tessenderlo;</li>
+<li>De gebruikte materialen.</li>
+</ul>
+
+<form id="intervention_warranty-form" action="/intervention/warranty" method="POST">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="Naam aanvrager" required name="Name">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="Adres" required name="address">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="Telefoonnummer" required name="number">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="Contactpersoon" required name="contact">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="E-mailadres" required name="Email">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="Voorkeur tijdstip" required name="time">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="Facturatieadres" required name="facturatie">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="Contactpersoon facturatie" required name="contact_facturatie">
+  <input class="w3-input w3-section w3-border" type="text" placeholder="BTW-nummer" name="btw">
+  <textarea class="w3-input w3-section w3-border" placeholder="Beschrijving van het defect" required name="description" rows="5"></textarea>
+  <input type="checkbox" id="agreed" required name="agreed"> Ik heb de voorwaarden gelezen en ben hiermee akkoord.
+  <br>
+  <input class="w3-button w3-gray w3-section" type="submit" value="Interventie aanvragen" id="subm_intervention_warranty" onclick="submitForm('intervention_warranty-form')">
+</form>
+
+</div>
+
+<div id="intervention_no_warranty" class="tabcontent">
+  <p>Via dit document kan u een interventie die gedekt is door garantie aanvragen. Gelieve de voorwaarden aandachtig te lezen alvorens een aanvraag in te dienen. Wij van zodra wij uw aanvraag ontvangen hebben zo spoedig mogelijk contact met u op.</p>
+
+ <h5>Voorwaarden</h5>
+ <p>De interventie tijd start bij aankomst op de werf of interventieplaats. Volgende tarieven worden toegepast per persoon voor de interventie:</p>
+ <ul>
+   <li>Interventie korter dan 2h van maandag tot vrijdag van 08u00 tot 17u00 : 75 € uur exclusief BTW;</li>
+   <li>Interventie 4h van maandag tot vrijdag van 08u00 en 17u00 : 65 € per uur exclusief BTW;</li>
+   <li>Interventie 8h van maandag tot vrijdag van 08u00 en 17u00 : 55 € per uur exclusief BTW.</li>
+ </ul>
+
+ <b>Na 17:00 is er geen interventie voorzien.</b></p>
+
+ <h6>Supplementair:</h6>
+ <ul>
+ <li>Verplaatsingsvergoeding van 1€/km. (exclusief BTW) . Start en eindigt aan kantoren van AI Electro
+ Technics te Ambachtsstraat 2 , Tessenderlo;</li>
+ <li>De gebruikte materialen.</li>
+ </ul>
+
+ <form id="intervention_nowarranty-form" action="/intervention/nowarranty" method="POST">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="Naam aanvrager" required name="Name">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="Adres" required name="address">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="Telefoonnummer" required name="number">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="Contactpersoon" required name="contact">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="E-mailadres" required name="Email">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="Voorkeur tijdstip" required name="time">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="Facturatieadres" required name="facturatie">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="Contactpersoon facturatie" required name="contact_facturatie">
+   <input class="w3-input w3-section w3-border" type="text" placeholder="BTW-nummer" name="btw">
+   <textarea class="w3-input w3-section w3-border" placeholder="Beschrijving van het defect" required name="description" rows="5"></textarea>
+   <input type="checkbox" id="agreed" required name="agreed"> Ik heb de voorwaarden gelezen en ben hiermee akkoord.
+   <br>
+   <input class="w3-button w3-gray w3-section" type="submit" value="Interventie aanvragen" id="subm_intervention_warranty" onclick="submitForm('intervention_nowarranty-form')">
+ </form>
+
+</div>
 
 
-<!-- Footer -->
-<footer class="w3-center w3-blue w3-padding-16">
-  <p>All Install Electro Technics - Ambachtsstraat 2, 3980 Tessenderlo - 013551003</p>
-</footer>
+
+<object data="resources/footer.htm" width="100%"></object>
 
 
+<script type="text/javascript" src="resources/header.js"></script>
 
+<script>
+function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
 
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
 
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+</script>
+
+<script>
+    function submitForm(name_form) {
+    var form = document.getElementById(name_form);
+    if (form.checkValidity()){
+      form.submit();
+      form.reset();
+      alert("Bedankt voor uw vraag. Wij behandelen hem zo snel mogelijk.");
+    }
+    else{
+      alert("Gelieve alle velden in te vullen.");
+    }
+    }
+</script>
 
 </body>
 </html>

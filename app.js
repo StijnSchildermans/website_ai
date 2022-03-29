@@ -59,6 +59,75 @@ app.post('/sendemail', function(request,response) {
   });
 });
 
+app.post('/intervention/warranty', function(request,response) {
+  var naam = request.body.Name;
+  var adres = request.body.address;
+  var nummer = request.body.number;
+  var contact = request.body.contact;
+  var email = request.body.Email;
+  var time = request.body.time;
+  var facturatie = request.body.facturatie;
+  var contact_facturatie = request.body.contact_facturatie;
+  var btw = request.body.btw;
+  var description = request.body.description;
+  var mailOptions = {
+    from: email,
+    to: 'georges@a-i-electro-technics.be',
+    subject: "Aanvraag interventie binnen garantie.",
+    text: "Naam aanvrager: " + naam
+    + "\nAdres: " + adres
+    + "\nTelefoonnummer: " + nummer
+    + "\nContactpersoon: " + contact
+    + "\nE-mailadres: " + email
+    + "\nVoorkeurstijdstip: " + time
+    + "\n\nFacturatieadres: " + facturatie
+    + "\nContactpersoon facturatie: " + contact_facturatie
+    + "\nBTW-nummer: " + btw
+    + "\n\n Beschrijving:\n" + description
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+});
+
+app.post('/intervention/nowarranty', function(request,response) {
+  var naam = request.body.Name;
+  var adres = request.body.address;
+  var nummer = request.body.number;
+  var contact = request.body.contact;
+  var email = request.body.Email;
+  var time = request.body.time;
+  var facturatie = request.body.facturatie;
+  var contact_facturatie = request.body.contact_facturatie;
+  var btw = request.body.btw;
+  var description = request.body.description;
+  var mailOptions = {
+    from: email,
+    to: 'georges@a-i-electro-technics.be',
+    subject: "Aanvraag interventie buiten garantie.",
+    text: "Naam aanvrager: " + naam
+    + "\nAdres: " + adres
+    + "\nTelefoonnummer: " + nummer
+    + "\nContactpersoon: " + contact
+    + "\nE-mailadres: " + email
+    + "\nVoorkeurstijdstip: " + time
+    + "\n\nFacturatieadres: " + facturatie
+    + "\nContactpersoon facturatie: " + contact_facturatie
+    + "\nBTW-nummer: " + btw
+    + "\n\n Beschrijving:\n" + description
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}`);
