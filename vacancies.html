@@ -5,26 +5,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 
 <div id="div_header" class="w3-top"></div>
 
-  <div class="w3-container w3-padding-48" id="vacatures">
-    <h2>Vacatures</h2>
+
+  <div class="container w3-padding-64">
+	  <div class="row">
+    		<h2>Word elektricien bij A I Electro Technics</h2>
+	  </div>
+
+	  <div class="row">
+	  <div class="col-6">
+	  	<p>Wij zijn op zoek naar bekwame en gemotiveerde Elektriciens om ons team te versterken. Voldoe je aan het onderstaande profiel en spreekt ons aanbod je aan? vul dan het contactformulier onderaan de pagina in om meteen bij ons te solliciteren!</p>
+    		<h4>Jouw profiel</h4>
+		<ul>
+			<li>Je bent in het bezit van een technisch diploma TSO of BSO of volwassenonderwijs (omscholing)  richting elektriciteit en/of  je hebt ervaring als elektricien.</li>
+			<li> In team werken is één van je sterke punten maar zelfstandig werken is geen probleem voor jou.</li>
+			<li>Je bent bereid om elke dag bij te leren en het beste van jezelf te geven.</li>
+		</ul>
+    <h4>Ons aanbod</h4>
+	  <ul>
+		  <li> Werken in een familiale sfeer.</li>
+		  <li> Uitdagende en gevarieerde projecten.</li>
+		  <li> Goede verloning.</li>
+	  </ul>
+	  </div>
+	  <div class="col-6">
+  		<img class="w3-image" src="resources/sollicitatie.jpg" alt="background" >
+	  </div>
+        </div>
+	<div class="row">
+
+		</div>
+  </div>
+   
+
+
+
+
+<div class="w3-container" id="solliciteer">
+  <h4>Solliciteer nu</h4>
+  <form id="sollicitatie-form" action="/sendemail" method="POST">
+    <input class="w3-input w3-border" type="text" placeholder="Naam" required name="Name">
+    <input class="w3-input w3-section w3-border" type="text" placeholder="E-mailadres" required name="Email">
+    <textarea class="w3-input w3-section w3-border" placeholder="Motivatie" required name="Body" rows="5"></textarea>
+    <input class="w3-button w3-gray w3-section" type="submit" value="Verzenden" id="subm" onclick="submitForm('sollicitatie-form')">
+
+  </form>
   </div>
 
-  <div class="w3-container" id="beschrijving">
-    <p>Wij zijn op zoek naar bekwame en gemotiveerde collega's. Spreekt 1 van de onderstaande vacatures je aan? Aarzel dan niet om <a href="/contact" class=w3-text-blue>contact</a> met ons op te nemen!</p>
-  </div>
+<script>
+    function submitForm(name_form) {
+    var form = document.getElementById(name_form);
+    if (form.checkValidity()){
+      form.submit();
+      form.reset();
+      alert("Bedankt voor uw interesse! Wij contacteren u zo snel mogelijk voor een gesprek.");
+    }
+    else{
+      alert("Gelieve alle velden in te vullen.");
+    }
+    }
+</script>
 
 
-  <div class="w3-container w3-padding-32" id="elektricien">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Elektricien</h3>
-    <p>Wij zijn steeds op zoek naar bekwame elektriciens.</p>
-    <h4 class="w3-padding-16">Jouw profiel</h4>
-    <h4 class="w3-padding-16">Ons aanbod</h4>
-  </div>
 
 <object data="resources/footer.htm" width="100%"></object>
 <script type="text/javascript" src="resources/header.js"></script>

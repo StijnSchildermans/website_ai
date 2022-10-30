@@ -43,6 +43,9 @@ app.post('/sendemail', function(request,response) {
   var naam = request.body.Name;
   var email = request.body.Email;
   var subject = request.body.Subject;
+  if (subject == "") {
+	subject = "Sollicitatie " + naam
+  }
   var body = request.body.Body;
   var mailOptions = {
     from: email,
